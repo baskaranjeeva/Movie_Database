@@ -3,7 +3,7 @@ import Logo from "../movie_logo_1.png";
 
 function Navbar() {
   return (
-    <div className="bg-orange-200 flex justify-between items-center">
+    <div className="bg-yellow-400 flex justify-between items-center">
       <div className="w-[80px] h-[80px] ml-5 mt-3">
         <img src={Logo} alt="logo" />
       </div>

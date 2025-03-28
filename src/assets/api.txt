@@ -1,0 +1,7 @@
+//Top Rated
+https://api.themoviedb.org/3/movie/top_rated?api_key=1806b0958523875dfa6632afce44caad&language=en-US&page=1
+
+api: 1806b0958523875dfa6632afce44caad
+
+
+https://image.tmdb.org/t/p/original/

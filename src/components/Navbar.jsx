@@ -1,5 +1,6 @@
 import React from "react";
 import Logo from "../movie_logo_1.png";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   return (
@@ -8,9 +9,9 @@ function Navbar() {
         <img src={Logo} alt="logo" />
       </div>
       <div className="space-x-15 mr-10 text-2xl font-bold">
-        <a href="/">Movies</a>
-        <a href="/watchlist">Watchlist</a>
-        <a href="/recommend">Movies Recommendations</a>
+        <Link to="/">Movies</Link>
+        <Link to="/watchlist">Watchlist</Link>
+        <Link to="/recommend">Movies Recommendations</Link>
       </div>
     </div>
   );

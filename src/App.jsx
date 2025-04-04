@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MoviesRecommendations from "./components/MoviesRecommendations";
 import Watchlist from "./components/Watchlist";
 import Movies from "./components/Movies";
+import { MovieContext } from "./components/MovieContext";
 
 function App() {
   const [watchlist, setWatchList] = useState([]);
@@ -26,31 +27,30 @@ function App() {
   }, []);
   return (
     <div>
-      <BrowserRouter>
-        <Navbar />
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <>
-                <Banner />
-                {/* <div className="flex flex-wrap justify-evenly ml-4 gap-6">
+      <MovieContext.Provider value={({ handleAddWatchList }, { watchlist })}>
+        <BrowserRouter>
+          <Navbar />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <>
+                  <Banner />
+                  {/* <div className="flex flex-wrap justify-evenly ml-4 gap-6">
                   <MovieCard />
-                </div> */}
-                <Movies
-                  addWatchList={handleAddWatchList}
-                  watchlist={watchlist}
-                />
-              </>
-            }
-          />
-          <Route
-            path="/watchlist"
-            element={<Watchlist watchlistData={watchlist} />}
-          />
-          <Route path="/recommend" element={<MoviesRecommendations />} />
-        </Routes>
-      </BrowserRouter>
+                  </div> */}
+                  <Movies />
+                </>
+              }
+            />
+            <Route
+              path="/watchlist"
+              element={<Watchlist watchlistData={watchlist} />}
+            />
+            <Route path="/recommend" element={<MoviesRecommendations />} />
+          </Routes>
+        </BrowserRouter>
+      </MovieContext.Provider>
     </div>
   );
 }

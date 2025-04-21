@@ -11,7 +11,7 @@ function Navbar() {
       <div className="space-x-15 mr-10 text-2xl font-bold">
         <Link to="/">Movies</Link>
         <Link to="/watchlist">Watchlist</Link>
-        <Link to="/recommend">Movies Recommendations</Link>
+        <Link to="/recommend">Movies Recommend</Link>
       </div>
     </div>
   );

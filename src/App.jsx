@@ -1,13 +1,20 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import "./App.css";
+import { lazy } from "react";
 import Navbar from "./components/Navbar";
 import Banner from "./components/Banner";
 import MovieCard from "./components/MovieCard";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import MoviesRecommendations from "./components/MoviesRecommendations";
-import Watchlist from "./components/Watchlist";
-import Movies from "./components/Movies";
+// import MoviesRecommendations from "./components/MoviesRecommendations";
+// import Watchlist from "./components/Watchlist";
+// import Movies from "./components/Movies";
 import { MovieContext } from "./components/MovieContext";
+
+const LazyMovies = lazy(() => import("./components/Movies.jsx"));
+const LazyWatchlist = lazy(() => import("./components/Watchlist.jsx"));
+const LazyMoviesRecommendations = lazy(() =>
+  import("./components/MoviesRecommendations.jsx")
+);
 
 function App() {
   const [watchlist, setWatchList] = useState([]);
@@ -30,25 +37,31 @@ function App() {
       <MovieContext.Provider value={({ handleAddWatchList }, { watchlist })}>
         <BrowserRouter>
           <Navbar />
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <>
-                  <Banner />
-                  {/* <div className="flex flex-wrap justify-evenly ml-4 gap-6">
+          <Suspense fallback={<h1>Loading...</h1>}>
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <>
+                    <Banner />
+                    {/* <div className="flex flex-wrap justify-evenly ml-4 gap-6">
                   <MovieCard />
                   </div> */}
-                  <Movies />
-                </>
-              }
-            />
-            <Route
-              path="/watchlist"
-              element={<Watchlist watchlistData={watchlist} />}
-            />
-            <Route path="/recommend" element={<MoviesRecommendations />} />
-          </Routes>
+                    {/* <Movies /> */}
+                    <LazyMovies />
+                  </>
+                }
+              />
+              <Route
+                path="/watchlist"
+                element={<LazyWatchlist watchlistData={watchlist} />}
+              />
+              <Route
+                path="/recommend"
+                element={<LazyMoviesRecommendations />}
+              />
+            </Routes>
+          </Suspense>
         </BrowserRouter>
       </MovieContext.Provider>
     </div>

@@ -24,7 +24,7 @@ function MovieCard({ movieObject }) {
         ) : (
           <div
             className="flex justify-end mr-3 pt-1 cursor-pointer"
-            onClick={() => finalAddWatchlist(movieObject)}
+            onClick={() => handleAddWatchList(movieObject)}
           >
             &#128151;
           </div>
